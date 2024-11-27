@@ -1,0 +1,5 @@
+dnn_model/yolov4.weights
+dnn_model/yolov4.cfg
+_pycache
+images/original_image.jpg
+images/processed_image.jpg
