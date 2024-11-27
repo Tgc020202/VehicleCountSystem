@@ -67,7 +67,7 @@ def upload_image():
         vehicle_counts[vehicle_type] += 1
         
     # Ensure 'images' folder exists
-    os.makedirs('images', exist_ok=True)
+    # os.makedirs('images', exist_ok=True)
     original_image_path = 'images/original_image.jpg'
 
     try:
