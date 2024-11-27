@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Detection Result</title>
+</head>
+<body>
+    <h1>Vehicle Detection Result</h1>
+    
+    <h2>Original Image</h2>
+    <img src="../images/original_image.jpg" alt="Original Image">
+
+    <h2>Processed Image</h2>
+    <img src="../images/processed_image.jpg" alt="Processed Image">
+
+    <h2>Vehicle Counts</h2>
+    <ul id="vehicle-counts">
+        <!-- Vehicle counts will be populated here -->
+    </ul>
+
+    <script>
+        // Function to load and display vehicle counts from count.json
+        function loadVehicleCounts() {
+            fetch('../count.json')
+                .then(response => response.json())
+                .then(data => {
+                    const counts = data;
+                    const countsList = document.getElementById("vehicle-counts");
+
+                    // Loop through each vehicle type and display it in the list
+                    for (const [vehicle, count] of Object.entries(counts)) {
+                        if (count != 0){
+                            const listItem = document.createElement("li");
+                        listItem.textContent = `${vehicle}: ${count}`;
+                        countsList.appendChild(listItem);
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading count.json:', error);
+                });
+        }
+
+        // Load the counts when the page is ready
+        window.onload = loadVehicleCounts;
+    </script>
+
+</body>
+</html>

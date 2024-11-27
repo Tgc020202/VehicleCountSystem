@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        #output {
+            display: block;
+            margin-top: 20px;
+        }
+        img {
+            max-width: 100%;
+        }
+        button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+        #detectButton {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Upload an Image for Vehicle Detection</h1>
+
+<form id="uploadForm">
+    <input type="file" id="imageUpload" name="image" accept="image/*" required>
+    <button type="submit">Upload Image</button>
+</form>
+
+<div id="uploadStatus" style="margin-top: 20px;"></div>
+
+<button id="detectButton" style="display: none;" disabled>Detect Vehicles</button>
+
+<div id="output">
+    <a href="output.html">
+        <button>Go to Results</button>
+    </a>
+</div>
+
+<script>
+document.getElementById('uploadForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append('image', document.getElementById('imageUpload').files[0]);
+
+    try {
+        // Show upload status
+        document.getElementById('uploadStatus').innerText = 'Uploading image...';
+
+        // Send the image to the backend (Flask server)
+        const response = await fetch('http://127.0.0.1:5000/upload', {
+            method: 'POST',
+            body: formData,
+            timeout: 10000
+        });
+        console.log("response:" + response);
+
+        if (!response.ok) {
+            throw new Error('Failed to upload image');
+        }
+    } catch (error) {
+        alert('Error: ' + error.message);
+    }
+});
+</script>
+
+</body>
+</html>
