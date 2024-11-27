@@ -13,10 +13,10 @@
 
 ### Web Design
 - JavaScript
-- CSS
+- Css
 - HTML
-- FLASK
-- PYTHON
+- Flask
+- Python
 
 ### Reference
 - [Vehicle Counting System In Python (Youtube)](https://www.youtube.com/watch?v=h1XhllUAA6c)
