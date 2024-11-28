@@ -4,19 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vehicle Detection Result</title>
+    <style>
+        .image-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 75%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 5px 0;
+        }
+    </style>
 </head>
 <body>
     <h1>Vehicle Detection Result</h1>
-    
-    <h2>Original Image</h2>
-    <img src="../images/original_image.jpg" alt="Original Image">
 
-    <h2>Processed Image</h2>
-    <img src="../images/processed_image.jpg" alt="Processed Image">
+    <div class="image-container">
+        <div>
+            <h2>Original Image</h2>
+            <img src="../images/original_image.jpg" alt="Original Image">
+        </div>
+        <div>
+            <h2>Output Image</h2>
+            <img src="../images/processed_image.jpg" alt="Processed Image">
+        </div>
+    </div>
 
     <h2>Vehicle Counts</h2>
     <ul id="vehicle-counts">
-        <!-- Vehicle counts will be populated here -->
     </ul>
 
     <script>
@@ -28,12 +66,11 @@
                     const counts = data;
                     const countsList = document.getElementById("vehicle-counts");
 
-                    // Loop through each vehicle type and display it in the list
                     for (const [vehicle, count] of Object.entries(counts)) {
-                        if (count != 0){
+                        if (count != 0) {
                             const listItem = document.createElement("li");
-                        listItem.textContent = `${vehicle}: ${count}`;
-                        countsList.appendChild(listItem);
+                            listItem.textContent = `${vehicle}: ${count}`;
+                            countsList.appendChild(listItem);
                         }
                     }
                 })
@@ -42,7 +79,6 @@
                 });
         }
 
-        // Load the counts when the page is ready
         window.onload = loadVehicleCounts;
     </script>
 

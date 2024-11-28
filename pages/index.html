@@ -10,19 +10,12 @@
             margin: 0;
             padding: 20px;
         }
-        #output {
-            display: block;
-            margin-top: 20px;
-        }
         img {
             max-width: 100%;
         }
         button:disabled {
             background-color: #ddd;
             cursor: not-allowed;
-        }
-        #detectButton {
-            margin-top: 20px;
         }
     </style>
 </head>
@@ -37,14 +30,6 @@
 
 <div id="uploadStatus" style="margin-top: 20px;"></div>
 
-<button id="detectButton" style="display: none;" disabled>Detect Vehicles</button>
-
-<div id="output">
-    <a href="output.html">
-        <button>Go to Results</button>
-    </a>
-</div>
-
 <script>
 document.getElementById('uploadForm').addEventListener('submit', async function(event) {
     event.preventDefault();
@@ -53,22 +38,25 @@ document.getElementById('uploadForm').addEventListener('submit', async function(
     formData.append('image', document.getElementById('imageUpload').files[0]);
 
     try {
-        // Show upload status
         document.getElementById('uploadStatus').innerText = 'Uploading image...';
 
-        // Send the image to the backend (Flask server)
         const response = await fetch('http://127.0.0.1:5000/upload', {
             method: 'POST',
             body: formData,
-            timeout: 10000
         });
-        console.log("response:" + response);
 
         if (!response.ok) {
             throw new Error('Failed to upload image');
         }
+
+        setTimeout(() => {
+            // window.location.href = 'output.html';
+            window.open('output.html', '_blank');
+        }, 1000);
+        alert("Image uploaded successfully!");
     } catch (error) {
-        alert('Error: ' + error.message);
+        document.getElementById('uploadStatus').innerText = 'Error: ' + error.message;
+        console.error('Error:', error);
     }
 });
 </script>

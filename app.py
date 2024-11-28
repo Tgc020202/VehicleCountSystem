@@ -92,7 +92,7 @@ def upload_image():
         cv2.imwrite(output_path, img)
     except Exception as e:
         return jsonify({"error": f"Failed to annotate or save processed image: {str(e)}"}), 500
-
+    
     # Return JSON response
     return jsonify({
         'vehicle_counts': vehicle_counts,
