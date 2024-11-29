@@ -1,6 +1,6 @@
 ## Installation
 - Add the pre-trained model into the project folder, you can get the model from the youtube link below. Included 2 files (yolov4.cfg & yolov4.weights)
-- open terminal ( you can press ctrl + \` ), type `pip install flask opencv-python numpy`
+- open terminal ( you can press ctrl + \` ), type `pip install flask opencv-python numpy flask-cors`
 - Hierarchy Sample Of Website:
 
 ![Hierarchy Sample Of Website](https://github.com/Tgc020202/VehicleCountSystem/blob/main/images/HirachySample.jpg)
