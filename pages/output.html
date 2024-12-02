@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vehicle Detection Result</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
     <style>
+        body {
+            background-image: url('../images/DesignImages/wall6.avif'); 
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+        }
+        
         .image-container {
             display: flex;
             gap: 20px;
@@ -19,43 +27,88 @@
             border-radius: 5px;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
         }
-
+	
+        .no-border-arrow {
+            border: none;
+            outline: none;
+        }
+	
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
         }
 
-        h1, h2 {
-            color: #333;
+        h1 {
+            color: #0e0505;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 50px; /* Larger font size for the title */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+	
+        .vehicle {
+            color: darkblue;
         }
 
-        ul {
+        .detection {
+            color: rgb(202, 8, 144);
+        }
+
+        .result {
+            color: darkblue;
+        }
+
+        h2 {
+            color: #2d056a;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        ul {  list-style-type: none;
             list-style-type: none;
-            padding: 0;
+            padding: 20px 30px;
+            /* Gradient background added here */
+            background: linear-gradient(to right, #f3f5f6, #d4bfcf); 
+            border-radius: 15px;
+            max-width: 500px; 
+            margin-left: 10%;   
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
         }
 
         ul li {
             margin: 5px 0;
+            color: #333;
+            font-family: 'Orbitron', cursive;
+            font-size: 20px;
+            text-align: left;
         }
     </style>
 </head>
 <body>
-    <h1>Vehicle Detection Result</h1>
+    <h1>
+        <span class="vehicle">Vehicle</span> 
+        <span class="detection">Detection</span> 
+        <span class="result">Result</span>
+    </h1>
 
-    <div class="image-container">
-        <div>
+    <div class="image-container" style="display: flex; align-items: center; justify-content: space-around;">
+        <div style="text-align: center;">
             <h2>Original Image</h2>
-            <img src="../images/original_image.jpg" alt="Original Image">
+            <img src="../images/ProcessImages/original_image.jpg" alt="Original Image" style="display: block; margin: auto;">
         </div>
-        <div>
+        <div style="display: flex; align-items: center;">
+            <img src="../images/DesignImages/arrow1.gif" alt="Arrow" style="display: block; margin: auto; width: 500px; height: auto;">
+        </div>
+        <div style="text-align: center;">
             <h2>Output Image</h2>
-            <img src="../images/processed_image.jpg" alt="Processed Image">
+            <img src="../images/ProcessImages/processed_image.jpg" alt="Processed Image" style="display: block; margin: auto;">
         </div>
     </div>
-
-    <h2>Vehicle Counts</h2>
-    <ul id="vehicle-counts">
-    </ul>
+    
+    <div style="text-align: center;">
+        <h2>Vehicle Counts</h2>
+        <ul id="vehicle-counts" style="display: block; margin: auto;"></ul>
+    </div>
+    
 
     <script>
         // Function to load and display vehicle counts from count.json

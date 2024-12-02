@@ -30,13 +30,14 @@ def read_counts():
 def write_counts(count_data):
     with open(count_json_path, 'w') as f:
         json.dump(count_data, f, indent=4)
-	
+
 # Initialize the vehicle detector
 vehicle_detector = VehicleDetector()
 
-# Ensure the images folder exists
-if not os.path.exists('images'):
-    os.makedirs('images')
+# Ensure the new images directory exists
+image_dir = 'images/ProcessImages'
+if not os.path.exists(image_dir):
+    os.makedirs(image_dir)
 
 # Define the route for image upload and processing
 @app.route('/upload', methods=['POST'])
@@ -54,7 +55,6 @@ def upload_image():
     except Exception as e:
         return jsonify({"error": f"Failed to process image: {str(e)}"}), 400
 
-
     # Perform vehicle detection
     try:
         vehicles = vehicle_detector.detect_vehicles(img)
@@ -65,10 +65,8 @@ def upload_image():
     vehicle_counts = {vehicle: 0 for vehicle in vehicle_detector.class_names.values()}
     for vehicle_type, _ in vehicles:
         vehicle_counts[vehicle_type] += 1
-        
-    # Ensure 'images' folder exists
-    # os.makedirs('images', exist_ok=True)
-    original_image_path = 'images/original_image.jpg'
+
+    original_image_path = os.path.join(image_dir, 'original_image.jpg')
 
     try:
         cv2.imwrite(original_image_path, img)
@@ -88,11 +86,11 @@ def upload_image():
             cv2.rectangle(img, (x, y), (x + w, y + h), color, 3)
             cv2.putText(img, vehicle_type, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2)
 
-        output_path = 'images/processed_image.jpg'
+        output_path = os.path.join(image_dir, 'processed_image.jpg')
         cv2.imwrite(output_path, img)
     except Exception as e:
         return jsonify({"error": f"Failed to annotate or save processed image: {str(e)}"}), 500
-    
+
     # Return JSON response
     return jsonify({
         'vehicle_counts': vehicle_counts,
@@ -103,7 +101,7 @@ def upload_image():
 # Route to serve images for displaying
 @app.route('/image/<filename>')
 def serve_image(filename):
-    return send_file(os.path.join('images', filename))
+    return send_file(os.path.join(image_dir, filename))
 
 if __name__ == '__main__':
     app.run(debug=True)
