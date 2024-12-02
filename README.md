@@ -12,9 +12,11 @@
 
 ## Push & Pull
 ![Hierarchy Sample Of Website](https://github.com/Tgc020202/VehicleCountSystem/blob/main/images/GithubCloneTutorialImage3.jpg)
-+ If you do any changes, will be showing there. Green box will show your changes files
++ If you do any changes, will be showing there. Your changes files will show at the Green box position
+
 ![Hierarchy Sample Of Website](https://github.com/Tgc020202/VehicleCountSystem/blob/main/images/GithubCloneTutorialImage5.jpg)
 + Before you push the changes, you need to make sure you have pull the latest code from the project
+
 ![Hierarchy Sample Of Website](https://github.com/Tgc020202/VehicleCountSystem/blob/main/images/GithubCloneTutorialImage4.jpg)
 + Then, you need to type any comment inside the Green Box
 + After that, you need to click the plus button in the blue box to upload your changes
