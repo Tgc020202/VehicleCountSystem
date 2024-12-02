@@ -6,9 +6,19 @@
 4. press the blue button to copy the link
 5. go to vscode again, open terminal in vscode or  press ( ctrl + ` )
 6. type git clone link.
-![Hierarchy Sample Of Website](https://github.com/Tgc020202/VehicleCountSystem/blob/main/images/GithubCloneTutorialImage1.jpg)
+![Hierarchy Sample Of Website](https://github.com/Tgc020202/VehicleCountSystem/blob/main/images/GithubCloneTutorialImage2.jpg)
 7. Then, if you do any changes, it will ask you to open new branch/repository in github, just proceed.
 8. go to github, in your repository will show the new repository.
+
+## Push & Pull
+![Hierarchy Sample Of Website](https://github.com/Tgc020202/VehicleCountSystem/blob/main/images/GithubCloneTutorialImage3.jpg)
++ If you do any changes, will be showing there. Green box will show your changes files
+![Hierarchy Sample Of Website](https://github.com/Tgc020202/VehicleCountSystem/blob/main/images/GithubCloneTutorialImage5.jpg)
++ Before you push the changes, you need to make sure you have pull the latest code from the project
+![Hierarchy Sample Of Website](https://github.com/Tgc020202/VehicleCountSystem/blob/main/images/GithubCloneTutorialImage4.jpg)
++ Then, you need to type any comment inside the Green Box
++ After that, you need to click the plus button in the blue box to upload your changes
++ Then, you can press the submit button to submit your changes. (Done push process)
 
 ## Installation
 - Add the pre-trained model into the project folder, you can get the model from the youtube link below. Included 2 files (yolov4.cfg & yolov4.weights)
