@@ -38,25 +38,21 @@ document.getElementById('uploadForm').addEventListener('submit', async function(
     formData.append('image', document.getElementById('imageUpload').files[0]);
 
     try {
-        document.getElementById('uploadStatus').innerText = 'Uploading image...';
-
         const response = await fetch('http://127.0.0.1:5000/upload', {
             method: 'POST',
             body: formData,
         });
 
-        if (!response.ok) {
-            throw new Error('Failed to upload image');
+        if (response.ok) {
+            const html = await response.text();
+            document.body.innerHTML = html;
+        } else {
+            const error = await response.json();
+            alert('Error: ' + error.error);
         }
-
-        setTimeout(() => {
-            // window.location.href = 'output.html';
-            window.open('output.html', '_blank');
-        }, 1000);
-        alert("Image uploaded successfully!");
     } catch (error) {
-        document.getElementById('uploadStatus').innerText = 'Error: ' + error.message;
         console.error('Error:', error);
+        alert('An error occurred while uploading the image.');
     }
 });
 </script>

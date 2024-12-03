@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
     <style>
         body {
-            background-image: url('../images/DesignImages/wall6.avif'); 
+            background-image: url("../static/images/DesignImages/wall6.avif");
             height: 100vh;
             background-size: cover;
             background-position: center;
@@ -27,12 +27,12 @@
             border-radius: 5px;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
         }
-	
+    
         .no-border-arrow {
             border: none;
             outline: none;
         }
-	
+    
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
@@ -45,7 +45,7 @@
             text-align: center;
             margin-bottom: 20px;
         }
-	
+    
         .vehicle {
             color: darkblue;
         }
@@ -63,10 +63,9 @@
             font-family: 'Orbitron', sans-serif;
         }
 
-        ul {  list-style-type: none;
+        ul {  
             list-style-type: none;
             padding: 20px 30px;
-            /* Gradient background added here */
             background: linear-gradient(to right, #f3f5f6, #d4bfcf); 
             border-radius: 15px;
             max-width: 500px; 
@@ -93,47 +92,26 @@
     <div class="image-container" style="display: flex; align-items: center; justify-content: space-around;">
         <div style="text-align: center;">
             <h2>Original Image</h2>
-            <img src="../images/ProcessImages/original_image.jpg" alt="Original Image" style="display: block; margin: auto;">
+            <img src="{{ original_image_url }}" alt="Original Image" style="display: block; margin: auto;">
         </div>
         <div style="display: flex; align-items: center;">
-            <img src="../images/DesignImages/arrow1.gif" alt="Arrow" style="display: block; margin: auto; width: 500px; height: auto;">
+            <img src="{{ url_for('static', filename='images/DesignImages/arrow1.gif') }}" alt="Arrow" style="display: block; margin: auto; width: 500px; height: auto;">
         </div>
         <div style="text-align: center;">
             <h2>Output Image</h2>
-            <img src="../images/ProcessImages/processed_image.jpg" alt="Processed Image" style="display: block; margin: auto;">
+            <img src="{{ output_image_url }}" alt="Processed Image" style="display: block; margin: auto;">
         </div>
     </div>
     
     <div style="text-align: center;">
         <h2>Vehicle Counts</h2>
-        <ul id="vehicle-counts" style="display: block; margin: auto;"></ul>
+        <ul id="vehicle-counts" style="display: block; margin: auto;">
+            {% for vehicle, count in vehicle_counts.items() %}
+                {% if count > 0 %}
+                    <li>{{ vehicle }}: {{ count }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>        
     </div>
-    
-
-    <script>
-        // Function to load and display vehicle counts from count.json
-        function loadVehicleCounts() {
-            fetch('../count.json')
-                .then(response => response.json())
-                .then(data => {
-                    const counts = data;
-                    const countsList = document.getElementById("vehicle-counts");
-
-                    for (const [vehicle, count] of Object.entries(counts)) {
-                        if (count != 0) {
-                            const listItem = document.createElement("li");
-                            listItem.textContent = `${vehicle}: ${count}`;
-                            countsList.appendChild(listItem);
-                        }
-                    }
-                })
-                .catch(error => {
-                    console.error('Error loading count.json:', error);
-                });
-        }
-
-        window.onload = loadVehicleCounts;
-    </script>
-
 </body>
 </html>
