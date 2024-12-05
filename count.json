@@ -1,7 +1,7 @@
 {
-    "Car": 4,
+    "Car": 7,
     "Motorcycle": 0,
     "Bus": 0,
     "Train": 0,
-    "Truck": 0
+    "Truck": 1
 }

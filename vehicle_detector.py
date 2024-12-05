@@ -1,29 +1,11 @@
 import cv2
 import numpy as np
-import os
-import gdown
 
 class VehicleDetector:
 
     def __init__(self):
-        # Paths and Google Drive file IDs
-        self.model_dir = "dnn_model"
-        self.cfg_file = os.path.join(self.model_dir, "yolov4.cfg")
-        self.weights_file = os.path.join(self.model_dir, "yolov4.weights")
-
-        # Google Drive file IDs
-        self.cfg_file_id = "1i9yFuOIx97fOWK8MpGtxQgyQ6K3fIVMq"
-        self.weights_file_id = "1sFt7GNbvrd-h4ZLNpGsClxWRFkqNJ1wT"
-
-        # Ensure model directory exists
-        os.makedirs(self.model_dir, exist_ok=True)
-
-        # Download files if missing
-        self.download_file(self.cfg_file_id, self.cfg_file)
-        self.download_file(self.weights_file_id, self.weights_file)
-
         # Load Network
-        net = cv2.dnn.readNet(self.weights_file, self.cfg_file)
+        net = cv2.dnn.readNet("dnn_model/yolov4.weights", "dnn_model/yolov4.cfg")
         self.model = cv2.dnn_DetectionModel(net)
         self.model.setInputParams(size=(832, 832), scale=1 / 255)
 
@@ -37,15 +19,6 @@ class VehicleDetector:
             "Truck": (255, 255, 0)      # Cyan
         }
         self.classes_allowed = list(self.class_names.keys())  # Filter for these classes only
-
-    def download_file(self, file_id, output_path):
-        """Downloads a file from Google Drive if it doesn't already exist."""
-        if not os.path.exists(output_path):
-            print(f"Downloading {output_path} from Google Drive...")
-            gdown.download(f"https://drive.google.com/uc?id={file_id}", output_path, quiet=False)
-            print(f"Downloaded {output_path}.")
-        else:
-            print(f"{output_path} already exists.")
 
     def detect_vehicles(self, img):
         # Detect Objects
