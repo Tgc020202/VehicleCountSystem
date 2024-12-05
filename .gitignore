@@ -4,3 +4,4 @@ __pycache__/
 images/original_image.jpg
 images/processed_image.jpg
 count.json
+node_modules/
