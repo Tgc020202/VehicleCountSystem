@@ -12,8 +12,8 @@ class VehicleDetector:
         self.weights_file = os.path.join(self.model_dir, "yolov4.weights")
 
         # Google Drive file IDs
-        self.cfg_file_id = "1kDsdBkrMx0vC8Zb7qfHNDyn1omYm5CvP"
-        self.weights_file_id = "1v8G6m2P7V9pCg2hnzPeoY_wBRGjqL3cn"
+        self.cfg_file_id = "1i9yFuOIx97fOWK8MpGtxQgyQ6K3fIVMq"
+        self.weights_file_id = "1sFt7GNbvrd-h4ZLNpGsClxWRFkqNJ1wT"
 
         # Ensure model directory exists
         os.makedirs(self.model_dir, exist_ok=True)
