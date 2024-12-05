@@ -54,7 +54,7 @@ This project focuses on developing a system to count vehicles using pre-trained 
 ## Installation
 
 - Add the pre-trained model to the project folder. You can get the model from the YouTube link below. It includes two files: `yolov4.cfg` and `yolov4.weights`.
-- Open the terminal (you can press ctrl + \`), then type  `pip install gdown flask opencv-python numpy flask-cors`.
+- Open the terminal (you can press ctrl + \`), then type  `pip install flask opencv-python numpy flask-cors`.
 - Hierarchy sample of the website:
 
 ![Hierarchy Sample Of Website](https://github.com/Tgc020202/VehicleCountSystem/blob/main/images/ReadMeImages/HirachySample.jpg)
