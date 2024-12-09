@@ -37,12 +37,6 @@ This project focuses on developing a system to count vehicles using pre-trained 
 
 - If you make any changes, they will show up there. Your changed files will appear in the green box.
 
-## Installation
-
-- Add the pre-trained model into the project folder, you can get the model from the youtube link below. Included 2 files (yolov4.cfg & yolov4.weights)
-- open terminal ( you can press ctrl + \` ), type `pip install gdown flask opencv-python numpy flask-cors`
-- Hierarchy Sample Of Website:
-
 ![Clone Tutorial](https://github.com/Tgc020202/VehicleCountSystem/blob/main/images/ReadMeImages/GithubCloneTutorialImage4.jpg)
 
 - Then, type a comment in the green box.
@@ -67,20 +61,6 @@ This project focuses on developing a system to count vehicles using pre-trained 
 2. Type `python app.py` to run the Python API.
 3. Copy the link `http://127.0.0.1:5000` and paste it into your browser.
 4. Try it out.
-
----
-
-## Tips
-
-1. Upload Button Problem
-
-- If you click the upload button and nothing happens, please try a few times, as the system may not have fully initialized.
-- Otherwise, check your browser to see if it is automatically closing the pop-up.
-- Steps to solve:  
-  ![Step 1](https://github.com/Tgc020202/VehicleCountSystem/blob/main/images/ReadMeImages/ProblemFixImage1.jpg)  
-  ![Step 2](https://github.com/Tgc020202/VehicleCountSystem/blob/main/images/ReadMeImages/ProblemFixImage2.jpg)  
-  ![Step 3](https://github.com/Tgc020202/VehicleCountSystem/blob/main/images/ReadMeImages/ProblemFixImage3.jpg)  
-  ![Step 4](https://github.com/Tgc020202/VehicleCountSystem/blob/main/images/ReadMeImages/ProblemFixImage4.jpg)
 
 ---
 
