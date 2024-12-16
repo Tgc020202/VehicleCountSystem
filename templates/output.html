@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,7 @@
             background-size: cover;
             background-position: center;
         }
-        
+
         .image-container {
             display: flex;
             gap: 20px;
@@ -27,12 +28,12 @@
             border-radius: 5px;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
         }
-    
+
         .no-border-arrow {
             border: none;
             outline: none;
         }
-    
+
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
@@ -45,7 +46,7 @@
             text-align: center;
             margin-bottom: 20px;
         }
-    
+
         .vehicle {
             color: rgb(0, 0, 139);
         }
@@ -109,14 +110,14 @@
             font-family: 'Orbitron', sans-serif;
         }
 
-        ul {  
+        ul {
             list-style-type: none;
             padding: 20px 30px;
-            background: linear-gradient(to right, #f3f5f6, #d4bfcf); 
+            background: linear-gradient(to right, #f3f5f6, #d4bfcf);
             border-radius: 15px;
-            max-width: 500px; 
-            margin-left: 10%;   
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+            max-width: 500px;
+            margin-left: 10%;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         ul li {
@@ -126,47 +127,95 @@
             font-size: 20px;
             text-align: left;
         }
+
+        .zoomable {
+            transition: transform 0.3s ease-in-out, top 0.3s ease-in-out, left 0.3s ease-in-out;
+            cursor: pointer;
+            position: relative;
+            z-index: 1; /* Ensure it stays above other elements when zoomed */
+        }
+
+        .zoomed {
+            position: fixed; /* Position relative to the viewport */
+            top: 50%; /* Move to the vertical center */
+            left: 50%; /* Move to the horizontal center */
+            transform: translate(-50%, -50%) scale(1); /* Adjust position and apply zoom */
+            z-index: 10; /* Bring the zoomed image to the front */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Optional: add a shadow for emphasis */
+        }
     </style>
 </head>
+
 <body>
     <!-- return back to index.html -->
-    <button class="button diamond-glow emerald" onclick="goBack()" aria-label="Go back to the previous page">Back</button>
+    <button class="button diamond-glow emerald" onclick="goBack()"
+        aria-label="Go back to the previous page">Back</button>
 
     <h1>
-        <span class="vehicle">Vehicle</span> 
-        <span class="detection">Detection</span> 
+        <span class="vehicle">Vehicle</span>
+        <span class="detection">Detection</span>
         <span class="result">Result</span>
     </h1>
 
     <div class="image-container" style="display: flex; align-items: center; justify-content: space-around;">
         <div style="text-align: center;">
             <h2>Original Image</h2>
-            <img src="{{ original_image_url }}" alt="Original Image" style="display: block; margin: auto;">
+            <img src="{{ original_image_url }}" class="zoomable" alt="Original Image"
+                style="display: block; margin: auto;">
         </div>
         <div style="display: flex; align-items: center;">
-            <img src="{{ url_for('static', filename='images/DesignImages/arrow1.gif') }}" alt="Arrow" style="display: block; margin: auto; width: 500px; height: auto;">
+            <img src="{{ url_for('static', filename='images/DesignImages/arrow1.gif') }}" alt="Arrow"
+                style="display: block; margin: auto; width: 500px; height: auto;">
         </div>
         <div style="text-align: center;">
             <h2>Output Image</h2>
-            <img src="{{ output_image_url }}" alt="Processed Image" style="display: block; margin: auto;">
+            <img src="{{ output_image_url }}" class="zoomable" alt="Processed Image"
+                style="display: block; margin: auto;">
         </div>
     </div>
-    
+
     <div style="text-align: center;">
         <h2>Vehicle Counts</h2>
         <ul id="vehicle-counts" style="display: block; margin: auto;">
             {% for vehicle, count in vehicle_counts.items() %}
-                {% if count > 0 %}
-                    <li>{{ vehicle }}: {{ count }}</li>
-                {% endif %}
+            {% if count > 0 %}
+            <li>{{ vehicle }}: {{ count }}</li>
+            {% endif %}
             {% endfor %}
-        </ul>        
+        </ul>
     </div>
 
     <script>
         function goBack() {
             window.history.back();
         }
+
+        // Zoom in
+        const images = document.querySelectorAll('.zoomable');
+
+        let currentlyZoomed = null; // Track the currently zoomed image
+
+        function toggleZoom(event) {
+            const clickedImage = event.target;
+
+            if (currentlyZoomed && currentlyZoomed !== clickedImage) {
+                currentlyZoomed.classList.remove('zoomed');
+                currentlyZoomed = null;
+            }
+
+            if (clickedImage.classList.contains('zoomed')) {
+                clickedImage.classList.remove('zoomed');
+                currentlyZoomed = null;
+            } else {
+                clickedImage.classList.add('zoomed');
+                currentlyZoomed = clickedImage;
+            }
+        }
+
+        images.forEach((image) => {
+            image.addEventListener('click', toggleZoom);
+        });
     </script>
 </body>
+
 </html>
